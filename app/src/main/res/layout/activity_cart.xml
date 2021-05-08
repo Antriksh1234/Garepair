@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/themeColor"
+    tools:context=".CartActivity">
+
+    <TextView
+        android:layout_marginStart="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Cart"
+        android:textSize="36sp"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cart_layout"/>
+
+    <RelativeLayout
+        android:id="@+id/cart_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/round_corner">
+
+        <RelativeLayout
+            android:id="@+id/total_layout"
+            android:layout_above="@id/place_order_button"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/total_bg"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@android:color/darker_gray"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Total"
+                android:layout_alignParentStart="true"
+                android:padding="18dp"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/order_total_textView"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:text="₹2060"
+                android:layout_alignParentEnd="true"
+                android:padding="18dp"/>
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/place_order_button"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Place my order"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:backgroundTint="@color/themeColor"
+            android:fontFamily="@font/work_sans_regular"
+            android:background="@drawable/button_bg"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_recyclerview"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/cart_item_layout"
+            android:layout_above="@id/total_layout"/>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

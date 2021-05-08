@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/themeColor"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:src="@drawable/care"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/intro1_heading"/>
+
+    <TextView
+        android:id="@+id/intro1_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Because we care\nabout you and \nyour ride."/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:fontFamily="@font/work_sans_regular"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/intro1_heading"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="6dp"
+        app:layout_constraintStart_toStartOf="@id/intro1_heading"
+        app:layout_constraintEnd_toEndOf="@id/intro1_heading"
+        android:text="We get you with the best of the services to get your ready as new."/>
+</androidx.constraintlayout.widget.ConstraintLayout>

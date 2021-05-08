@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/service_cardView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardBackgroundColor="#F3ECEC"
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/car"/>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toEndOf="@id/service_cardView"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/service_name_cart"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Lorem Ipsum ipsum"/>
+
+        <TextView
+            android:textColor="@color/teal_700"
+            android:id="@+id/service_description_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum"/>
+    </LinearLayout>
+
+    <TextView
+        android:textColor="@color/teal_700"
+        android:id="@+id/price_of_service_cart"
+        android:text="₹120"
+        android:textSize="18sp"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
