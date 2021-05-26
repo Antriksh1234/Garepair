@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TabbedFragment.Service5Fragment">
+    tools:context=".TabbedFragment.DentingPaintingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/service5_recyclerview"
+        android:id="@+id/denting_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/choose_service_item_layout"/>

@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TabbedFragment.Service4Fragment">
+    tools:context=".TabbedFragment.PeriodicServiceFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/service4_recyclerview"
+        android:id="@+id/periodic_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/choose_service_item_layout"/>
-
 
 </FrameLayout>

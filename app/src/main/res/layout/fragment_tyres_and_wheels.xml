@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TabbedFragment.Service2Fragment">
+    tools:context=".TabbedFragment.TyresAndWheelsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/service2_recyclerview"
+        android:id="@+id/tyres_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/choose_service_item_layout"/>

@@ -12,10 +12,10 @@ import com.atandroidlabs.garepair.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Service1Fragment#newInstance} factory method to
+ * Use the {@link BatteryServiceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Service1Fragment extends Fragment {
+public class BatteryServiceFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Service1Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Service1Fragment() {
+    public BatteryServiceFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class Service1Fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Service1Fragment.
+     * @return A new instance of fragment BatteryServiceFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Service1Fragment newInstance(String param1, String param2) {
-        Service1Fragment fragment = new Service1Fragment();
+    public static BatteryServiceFragment newInstance(String param1, String param2) {
+        BatteryServiceFragment fragment = new BatteryServiceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class Service1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_service1, container, false);
+        return inflater.inflate(R.layout.fragment_battery_service, container, false);
     }
 }

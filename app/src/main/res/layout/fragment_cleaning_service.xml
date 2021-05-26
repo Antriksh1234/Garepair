@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TabbedFragment.Service1Fragment">
+    tools:context=".TabbedFragment.CleaningServiceFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/service1_recyclerview"
+        android:id="@+id/cleaning_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/choose_service_item_layout"/>
 
-</RelativeLayout>
+</FrameLayout>

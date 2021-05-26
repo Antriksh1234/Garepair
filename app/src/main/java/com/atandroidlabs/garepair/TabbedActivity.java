@@ -12,23 +12,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.atandroidlabs.garepair.TabbedFragment.Service1Fragment;
-import com.atandroidlabs.garepair.TabbedFragment.Service2Fragment;
-import com.atandroidlabs.garepair.TabbedFragment.Service3Fragment;
-import com.atandroidlabs.garepair.TabbedFragment.Service4Fragment;
-import com.atandroidlabs.garepair.TabbedFragment.Service5Fragment;
-import com.atandroidlabs.garepair.TabbedFragment.Service6Fragment;
+import com.atandroidlabs.garepair.TabbedFragment.AcServiceAndRepairFragment;
+import com.atandroidlabs.garepair.TabbedFragment.BatteryServiceFragment;
+import com.atandroidlabs.garepair.TabbedFragment.CleaningServiceFragment;
+import com.atandroidlabs.garepair.TabbedFragment.DentingPaintingFragment;
+import com.atandroidlabs.garepair.TabbedFragment.LightsFilamentFragment;
+import com.atandroidlabs.garepair.TabbedFragment.PeriodicServiceFragment;
+import com.atandroidlabs.garepair.TabbedFragment.TyresAndWheelsFragment;
+import com.atandroidlabs.garepair.TabbedFragment.WinshieldAndGlassFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class TabbedActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private final int NumberOfServices = 6;
+    private final int NumberOfServices = 8;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
+
+        getSupportActionBar().hide();
 
         viewPager = findViewById(R.id.choose_service_viewpager);
         tabLayout = findViewById(R.id.choose_service_tab_layout);
@@ -56,17 +61,23 @@ public class TabbedActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == 0) {
-                return "Service1";
+                return "Periodic Services";
             }  else if (position == 1) {
-                return "Service2";
+                return "Denting And Painting";
             } else if (position == 2) {
-                return "Service3";
+                return "Lights And Filaments";
             } else if (position == 3) {
-                return "Service4";
+                return "AC Service And Repair";
             } else if (position == 4) {
-                return "Service5";
+                return "Battery";
+            } else if (position == 5){
+                return "Cleaning";
+            } else if (position == 6) {
+                return "Tyres And Wheels";
+            } else if (position == 7) {
+                return "Windshield And Glass";
             } else {
-                return "Service6";
+                return "Periodic Services";
             }
         }
 
@@ -75,20 +86,23 @@ public class TabbedActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new Service1Fragment();
+                    return new PeriodicServiceFragment();
                 case 1:
-                    return new Service2Fragment();
+                    return new DentingPaintingFragment();
                 case 2:
-                    return new Service3Fragment();
+                    return new LightsFilamentFragment();
                 case 3:
-                    return new Service4Fragment();
+                    return new AcServiceAndRepairFragment();
                 case 4:
-                    return new Service5Fragment();
+                    return new BatteryServiceFragment();
                 case 5:
-                    return new Service6Fragment();
+                    return new CleaningServiceFragment();
+                case 6:
+                    return new TyresAndWheelsFragment();
+                case 7:
+                    return new WinshieldAndGlassFragment();
                 default:
-                    return new Service1Fragment();
-
+                    return new PeriodicServiceFragment();
             }
         }
 
