@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        listView=findViewById(R.id.listView);
-        companyList=new ArrayList<>();
-        arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,companyList);
+//        listView=findViewById(R.id.listView);
+//        companyList=new ArrayList<>();
+//        arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,companyList);
         addToList();
     }
     public void addToList(){

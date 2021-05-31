@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/top"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:text="Hello User"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/explore_heading"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:text="Explore The\nBest Deals\nFor Your Car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/explore_heading"
+        android:layout_alignStart="@id/explore_heading"
+        android:layout_alignEnd="@id/explore_heading"
+        android:layout_marginTop="8dp"
+        android:onClick="placeOrder"
+        app:icon="@drawable/ic_baseline_arrow_forward_24"
+        app:iconGravity="end"
+        android:text="View Services"/>
+
+    <ImageView
+        android:src="@drawable/bottom"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:src="@drawable/repair_icon"
+        android:layout_toEndOf="@id/explore_heading"
+        android:layout_alignTop="@id/explore_heading"
+        android:adjustViewBounds="true"
+        android:layout_alignBottom="@id/explore_heading"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

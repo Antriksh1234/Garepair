@@ -4,20 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F0FCFC"
     tools:context=".MainActivity">
 
-    <Button
-        android:onClick="placeOrder"
-        android:id="@+id/placeOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Place Order"/>
-    <ListView
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-20dp"
+        android:layout_above="@id/my_vehicle_relative">
+
+        <include layout="@layout/place_order_fragment"/>
+
+    </FrameLayout>
+    <RelativeLayout
+        android:id="@+id/my_vehicle_relative"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/placeOrder"
-        android:id="@+id/listView"
-        />
+        android:background="@drawable/round_corner_white">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/my_car_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="#CEDDDD"
+            android:layout_margin="20dp">
+
+            <ImageView
+                android:id="@+id/car_imageView"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_toEndOf="@id/my_car_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/work_sans_extra_bold_regular"
+                android:text="My Vehicle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum Ipsum"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/view_all"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="#CEDDDD">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_format_list_bulleted_24"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:text="View All"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </RelativeLayout>
