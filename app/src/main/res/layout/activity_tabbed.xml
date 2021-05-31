@@ -52,8 +52,8 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/choose_service_tab_layout"
         android:layout_width="match_parent"
-        app:tabIndicatorColor="@color/themeColor"
-        app:tabSelectedTextColor="@color/themeColor"
+        app:tabIndicatorColor="@color/purple_500"
+        app:tabSelectedTextColor="@color/purple_500"
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"

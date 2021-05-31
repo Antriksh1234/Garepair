@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/top"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:text="Hello User"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/working_heading"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:text="We Are\nWorking On\nIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/view_status_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/working_heading"
+        android:layout_alignStart="@id/working_heading"
+        android:layout_alignEnd="@id/working_heading"
+        android:layout_marginTop="8dp"
+        android:onClick="viewStatus"
+        app:icon="@drawable/ic_baseline_arrow_forward_24"
+        app:iconGravity="end"
+        android:text="View My Car"/>
+
+    <ImageView
+        android:src="@drawable/bottom"
+
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:adjustViewBounds="true"
+        android:layout_marginTop="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:src="@drawable/working"
+        android:layout_toEndOf="@id/working_heading"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_alignTop="@id/working_heading"
+        android:layout_alignBottom="@id/working_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

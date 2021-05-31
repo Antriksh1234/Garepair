@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> companyList;
     FirebaseFirestore firebaseFirestore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,4 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TabbedActivity.class);
         startActivity(intent);
     }
+
+    public void viewStatus(View view) {
+        Intent intent = new Intent(this, StatusActivity.class);
+        startActivity(intent);
+    }
+
 }
