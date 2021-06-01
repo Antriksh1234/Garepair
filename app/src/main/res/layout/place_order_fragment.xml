@@ -11,6 +11,7 @@
         android:adjustViewBounds="true"/>
 
     <TextView
+        android:id="@+id/hello_user"
         android:text="Hello User"
         android:layout_margin="16dp"
         android:textColor="@color/white"
@@ -18,6 +19,17 @@
         android:fontFamily="@font/work_sans_extra_bold_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_alignTop="@id/hello_user"
+        android:layout_alignBottom="@id/hello_user"
+        android:src="@drawable/ic_baseline_help_24"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/explore_heading"

@@ -11,6 +11,7 @@
         android:adjustViewBounds="true"/>
 
     <TextView
+        android:id="@+id/hello_user"
         android:text="Hello User"
         android:layout_margin="16dp"
         android:textColor="@color/white"
@@ -19,6 +20,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_alignTop="@id/hello_user"
+        android:layout_alignBottom="@id/hello_user"
+        android:src="@drawable/ic_baseline_help_24"
+        app:tint="@color/white" />
+
     <TextView
         android:id="@+id/working_heading"
         android:fontFamily="@font/work_sans_extra_bold_regular"
@@ -26,17 +37,26 @@
         android:layout_marginStart="20dp"
         android:textColor="@color/black"
         android:textSize="36sp"
-        android:text="We Are\nWorking On\nIt"
+        android:text="We Are\nWorking\nOn It"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:fontFamily="@font/work_sans_regular"
+        android:id="@+id/working_subtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Know the real time status of car"
+        android:layout_below="@id/working_heading"
+        android:layout_alignStart="@id/working_heading"
+        android:layout_alignEnd="@id/working_heading"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/view_status_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/working_heading"
+        android:layout_below="@id/working_subtext"
         android:layout_alignStart="@id/working_heading"
-        android:layout_alignEnd="@id/working_heading"
         android:layout_marginTop="8dp"
         android:onClick="viewStatus"
         app:icon="@drawable/ic_baseline_arrow_forward_24"
@@ -52,6 +72,7 @@
         android:layout_height="wrap_content"/>
 
     <ImageView
+        android:scaleType="fitEnd"
         android:adjustViewBounds="true"
         android:layout_marginTop="-10dp"
         android:layout_marginBottom="-10dp"
