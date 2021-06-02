@@ -1,14 +1,30 @@
 package com.atandroidlabs.garepair.TabbedFragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.atandroidlabs.garepair.FragmentAdapter;
+import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +41,9 @@ public class AcServiceAndRepairFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+
 
     public AcServiceAndRepairFragment() {
         // Required empty public constructor
@@ -61,6 +80,37 @@ public class AcServiceAndRepairFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.i("Hello","Before Loop");
+        List<ServicePojo> acService=new ArrayList<>();
+        View view=(View) inflater.inflate(R.layout.fragment_ac_service_and_repair,container,false);
+        recyclerView=view.findViewById(R.id.ac_recyclerview);
+        RecyclerView.LayoutManager manager=new LinearLayoutManager(getContext());
+        adapter=new FragmentAdapter(acService,getContext());
+        recyclerView.setAdapter(adapter);
+        FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+        firestore.collection("services").document().collection("AC Service and Repair").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for(QueryDocumentSnapshot document : task.getResult()){
+                        ServicePojo obj=new ServicePojo();
+                        Log.i("hello","in loop");
+                        obj.setServiceName(document.get("Name").toString());
+                        obj.setWarrenty(document.get("Warrenty").toString());
+                        obj.setDuration(document.get("Duration").toString());
+                        acService.add(obj);
+                    }
+                }
+                else Log.i("Error","Task failure");
+            }
+        });
+        adapter.notifyDataSetChanged();
+        Log.i("Hello","After loop"+acService.size());
+        for (int i=0;i<acService.size();i++){
+            Log.i("Name",acService.get(i).getServiceName());
+            Log.i("Duration",acService.get(i).getDuration());
+            Log.i("Warrenty",acService.get(i).getWarrenty());
+        }
         return inflater.inflate(R.layout.fragment_ac_service_and_repair, container, false);
     }
 }

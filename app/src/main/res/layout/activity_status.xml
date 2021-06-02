@@ -10,14 +10,14 @@
         android:id="@+id/working_heading_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/work_sans_extra_bold_regular"
         android:layout_marginEnd="20dp"
-        android:text="Getting Your Csar Ready"/>
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:text="Getting Your Car Ready"
+        android:textAlignment="center"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/estimated_time"
