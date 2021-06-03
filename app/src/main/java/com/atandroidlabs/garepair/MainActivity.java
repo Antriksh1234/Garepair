@@ -2,12 +2,8 @@ package com.atandroidlabs.garepair;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,10 +19,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = ".MainActivity";
@@ -59,33 +52,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             indicator.setVisibility(View.VISIBLE);
 
-            // TODO: 6/3/2021 without this line it doesn't work , need to fix this
-            mainFragment = new PlaceOrderFragment();
-            getFragment();
+            setupFragment();
         }
-    }
-
-    private void getFragment() {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                //Background work here
-                final Fragment myFragment = setupFragment();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (myFragment != null) {
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
-                        } else {
-
-                        }
-                    }
-                });
-            }
-        });
     }
 
     OnCompleteListener<DocumentSnapshot> listener = new OnCompleteListener<DocumentSnapshot>() {
@@ -100,10 +68,12 @@ public class MainActivity extends AppCompatActivity {
                     String orderId = (String) document.get("orderId");
                     if (orderId == null) {
                         Log.d(TAG, "Place Order --------------------------------");
+                        indicator.setVisibility(View.INVISIBLE);
                         mainFragment = new PlaceOrderFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
                     } else {
                         //There exists an order and we set up fragment based,
-                        mainFragment = setUpFragmentUtil(db, orderId);
+                        setUpFragmentUtil(db, orderId);
                     }
                 } else {
                     Log.d(TAG, "No such document");
@@ -114,12 +84,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private Fragment setupFragment() {
+    private void setupFragment() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String id = user.getUid();
         DocumentReference docRef = db.collection("User").document(id);
         docRef.get().addOnCompleteListener(listener);
-        return mainFragment;
     }
 
     OnCompleteListener<DocumentSnapshot> completeListener = new OnCompleteListener<DocumentSnapshot>() {
@@ -129,11 +98,15 @@ public class MainActivity extends AppCompatActivity {
                 String status = (String) task.getResult().get("status");
                 assert status != null;
                 if (status.contentEquals("done")) {
+                    indicator.setVisibility(View.INVISIBLE);
                     mainFragment = new AllDoneFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
                     Log.d(TAG, "All Done --------------------------------");
                 } else {
                     Log.d(TAG, "Working --------------------------------");
+                    indicator.setVisibility(View.INVISIBLE);
                     mainFragment = new WorkingOnItFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
                 }
                 //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
             } else {
@@ -142,10 +115,9 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private Fragment setUpFragmentUtil(FirebaseFirestore db, String orderId) {
+    private void setUpFragmentUtil(FirebaseFirestore db, String orderId) {
         DocumentReference orderDoc = db.collection("Orders").document(orderId);
         orderDoc.get().addOnCompleteListener(completeListener);
-        return mainFragment;
     }
 
     public void placeOrder(View view) {

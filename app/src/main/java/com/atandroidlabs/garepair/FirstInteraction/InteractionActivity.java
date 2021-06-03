@@ -33,6 +33,7 @@ public class InteractionActivity extends FragmentActivity {
         //At the moment
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

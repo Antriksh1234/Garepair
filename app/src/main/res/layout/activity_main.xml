@@ -14,8 +14,6 @@
         android:layout_marginBottom="-20dp"
         android:layout_above="@id/my_vehicle_relative">
 
-        <include layout="@layout/place_order_fragment" />
-
     </FrameLayout>
     <RelativeLayout
         android:id="@+id/my_vehicle_relative"
@@ -78,6 +76,7 @@
     <!--A Progress bar while loading-->
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/loading"
+        android:indeterminate="true"
         app:indicatorColor="@color/purple_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
