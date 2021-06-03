@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Garepair">
-        <activity android:name=".StatusActivity"></activity>
+        <activity android:name=".StatusActivity"/>
+        <activity android:name=".FaqActivity"/>
         <activity
             android:name=".SplashScreen"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
