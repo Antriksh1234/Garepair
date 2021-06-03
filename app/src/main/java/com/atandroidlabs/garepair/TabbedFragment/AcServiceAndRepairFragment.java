@@ -43,6 +43,7 @@ public class AcServiceAndRepairFragment extends Fragment {
     private String mParam2;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
+    List<ServicePojo> acService;
 
 
     public AcServiceAndRepairFragment() {
@@ -81,18 +82,19 @@ public class AcServiceAndRepairFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Log.i("Hello","Before Loop");
-        List<ServicePojo> acService=new ArrayList<>();
+        acService=new ArrayList<>();
         View view=(View) inflater.inflate(R.layout.fragment_ac_service_and_repair,container,false);
         recyclerView=view.findViewById(R.id.ac_recyclerview);
-        RecyclerView.LayoutManager manager=new LinearLayoutManager(getContext());
         adapter=new FragmentAdapter(acService,getContext());
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         FirebaseFirestore firestore=FirebaseFirestore.getInstance();
-        firestore.collection("services").document().collection("AC Service and Repair").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
+        firestore.collection("services").document("LzhImDCVx6jyDivEx2z6")
+                .collection("AC Service and Repair").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot document : task.getResult()){
+                        Log.i(document.getId(),document.getData().toString());
                         ServicePojo obj=new ServicePojo();
                         Log.i("hello","in loop");
                         obj.setServiceName(document.get("Name").toString());
@@ -100,17 +102,17 @@ public class AcServiceAndRepairFragment extends Fragment {
                         obj.setDuration(document.get("Duration").toString());
                         acService.add(obj);
                     }
+                    Log.i("Hello","After loop"+acService.size());
+                    for (int i=0;i<acService.size();i++){
+                        Log.i("Name",acService.get(i).getServiceName());
+                        Log.i("Duration",acService.get(i).getDuration());
+                        Log.i("Warrenty",acService.get(i).getWarrenty());
+                    }
+                    adapter.notifyDataSetChanged();
                 }
                 else Log.i("Error","Task failure");
             }
         });
-        adapter.notifyDataSetChanged();
-        Log.i("Hello","After loop"+acService.size());
-        for (int i=0;i<acService.size();i++){
-            Log.i("Name",acService.get(i).getServiceName());
-            Log.i("Duration",acService.get(i).getDuration());
-            Log.i("Warrenty",acService.get(i).getWarrenty());
-        }
         return inflater.inflate(R.layout.fragment_ac_service_and_repair, container, false);
     }
 }
