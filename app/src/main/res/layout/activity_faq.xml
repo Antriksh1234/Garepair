@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FaqActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/faq_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500">
+
+                <TextView
+                    android:id="@+id/faq_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Enhancing Driving experiences for over 10 years"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/work_sans_extra_bold_regular"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/faq_head"
+                    android:layout_centerHorizontal="true"
+                    android:text="Because We believe in your satisfaction"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/work_sans_regular"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/faq_head_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FAQ"
+                android:layout_below="@id/faq_top"
+                android:textSize="24sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/work_sans_extra_bold_regular"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/faq_rcv"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                tools:listitem="@layout/faq_item"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/faq_head_2"/>
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

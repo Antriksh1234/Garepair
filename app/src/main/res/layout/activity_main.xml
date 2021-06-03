@@ -75,4 +75,12 @@
 
     </RelativeLayout>
 
+    <!--A Progress bar while loading-->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loading"
+        app:indicatorColor="@color/purple_500"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Garepair</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="lorem_small">Lorem ipsum dolor sit amet, consectetur</string>
+    <string name="lorem_big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id urna cursus mi congue tristique ac vel ligula. Sed eleifend et tellus in tempus. Nunc sagittis nunc in egestas viverra. Vestibulum lobortis ac massa id aliquam. Aenean elementum elit lectus, ut tempus nulla mollis nec. Mauris placerat malesuada viverra. Praesent elementum nisi sed libero placerat, ut egestas purus bibendum.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in_with_google">Sign In With Google</string>
 </resources>

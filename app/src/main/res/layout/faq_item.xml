@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:text="@string/lorem_small"
+        android:textSize="22sp"
+        android:id="@+id/faq_ques"
+        android:fontFamily="@font/work_sans_extra_bold"
+        android:layout_width="wrap_content"
+        android:layout_toStartOf="@id/down_img"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/down_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/faq_ques"
+        android:layout_alignBottom="@id/faq_ques"
+        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"/>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/work_sans_regular"
+        android:text="@string/lorem_big"
+        android:id="@+id/faq_ans"
+        android:textSize="20sp"
+        android:layout_below="@id/faq_ques"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
