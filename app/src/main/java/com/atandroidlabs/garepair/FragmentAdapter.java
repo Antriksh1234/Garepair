@@ -32,8 +32,8 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
     public void onBindViewHolder(@NonNull FragmentAdapter.ViewHolder holder, int position) {
         ServicePojo obj=list.get(position);
         holder.Name.setText(obj.getServiceName());
-        holder.Duration.setText(obj.getDuration());
-        holder.Warrenty.setText(obj.getDuration());
+        holder.Duration.setText("Estimated Time : "+obj.getDuration());
+        holder.Warrenty.setText("Warrenty : "+obj.getWarrenty());
     }
 
     @Override

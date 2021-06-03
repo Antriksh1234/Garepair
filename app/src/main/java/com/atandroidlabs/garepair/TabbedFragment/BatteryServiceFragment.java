@@ -2,13 +2,27 @@ package com.atandroidlabs.garepair.TabbedFragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.atandroidlabs.garepair.FragmentAdapter;
 import com.atandroidlabs.garepair.R;
+import com.atandroidlabs.garepair.ServicePojo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +39,9 @@ public class BatteryServiceFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    RecyclerView recyclerView;
+    List<ServicePojo> list;
+    RecyclerView.Adapter adapter;
 
     public BatteryServiceFragment() {
         // Required empty public constructor
@@ -61,6 +78,32 @@ public class BatteryServiceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_battery_service, container, false);
+        View view=(View)inflater.inflate(R.layout.fragment_battery_service,container,false);
+        list=new ArrayList<>();
+        recyclerView=(RecyclerView)view.findViewById(R.id.battery_recyclerview);
+        adapter=new FragmentAdapter(list,getContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
+        firebaseFirestore.collection("services").document("LzhImDCVx6jyDivEx2z6")
+                .collection("Battery Service").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for(QueryDocumentSnapshot document : task.getResult()){
+                        ServicePojo obj=new ServicePojo();
+                        obj.setServiceName(document.get("Name").toString());
+                        obj.setWarrenty(document.get("Warrenty").toString());
+                        obj.setDuration(document.get("Duration").toString());
+                        list.add(obj);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+                else{
+                    Log.i("Error","Task Failure");
+                }
+            }
+        });
+        return view;
     }
 }

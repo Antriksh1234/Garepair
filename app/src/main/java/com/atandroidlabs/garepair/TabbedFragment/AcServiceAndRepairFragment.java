@@ -81,7 +81,6 @@ public class AcServiceAndRepairFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.i("Hello","Before Loop");
         acService=new ArrayList<>();
         View view=(View) inflater.inflate(R.layout.fragment_ac_service_and_repair,container,false);
         recyclerView=view.findViewById(R.id.ac_recyclerview);
@@ -94,25 +93,17 @@ public class AcServiceAndRepairFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot document : task.getResult()){
-                        Log.i(document.getId(),document.getData().toString());
                         ServicePojo obj=new ServicePojo();
-                        Log.i("hello","in loop");
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
                         acService.add(obj);
-                    }
-                    Log.i("Hello","After loop"+acService.size());
-                    for (int i=0;i<acService.size();i++){
-                        Log.i("Name",acService.get(i).getServiceName());
-                        Log.i("Duration",acService.get(i).getDuration());
-                        Log.i("Warrenty",acService.get(i).getWarrenty());
                     }
                     adapter.notifyDataSetChanged();
                 }
                 else Log.i("Error","Task failure");
             }
         });
-        return inflater.inflate(R.layout.fragment_ac_service_and_repair, container, false);
+        return view;
     }
 }
