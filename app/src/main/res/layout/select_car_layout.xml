@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/select_heading"
+        android:textSize="28sp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/work_sans_extra_bold_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Select Your Car"/>
+
+    <Spinner
+        android:layout_below="@id/select_heading"
+        android:layout_margin="20dp"
+        android:id="@+id/car_select_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cars_rcv"
+        android:layout_margin="20dp"
+        android:layout_below="@id/car_select_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select"
+        android:layout_margin="20dp"
+        android:layout_below="@id/cars_rcv"
+        app:cornerRadius="20dp"/>
+
+</RelativeLayout>
