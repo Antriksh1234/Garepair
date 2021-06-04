@@ -72,19 +72,5 @@
             android:text="₹2300"/>
     </RelativeLayout>
 
-    <TextView
-        android:background="@drawable/button_bg"
-        android:textAllCaps="true"
-        android:textAlignment="center"
-        android:padding="14sp"
-        android:fontFamily="@font/work_sans_extra_bold"
-        android:layout_margin="0dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/upper_service_layout"
-        android:backgroundTint="@color/themeColor"
-        android:textColor="@color/white"
-        android:text="+ Add to Cart" />
-
 
 </RelativeLayout>

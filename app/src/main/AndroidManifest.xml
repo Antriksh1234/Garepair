@@ -13,6 +13,7 @@
         android:theme="@style/Theme.Garepair">
         <activity android:name=".StatusActivity"/>
         <activity android:name=".FaqActivity"/>
+        <activity android:name=".SignInActivity"/>
         <activity
             android:name=".SplashScreen"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
@@ -22,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignInActivity"/>
         <activity android:name=".CartActivity">
 
             <!-- <intent-filter> -->

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,13 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
         holder.Name.setText(obj.getServiceName());
         holder.Duration.setText("Estimated Time : "+obj.getDuration());
         holder.Warrenty.setText("Warrenty : "+obj.getWarrenty());
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name=list.get(position).getServiceName();
+                Toast.makeText(view.getContext(),name,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -43,12 +51,14 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView Name, Warrenty, Duration;
+        public View mView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Name = (TextView) itemView.findViewById(R.id.ServiceName);
             Warrenty = (TextView) itemView.findViewById(R.id.ServiceWarrenty);
             Duration = (TextView) itemView.findViewById(R.id.ServiceDuration);
+            mView=itemView;
         }
     }
 }

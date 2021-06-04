@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showCarsOfBrand(String brandName, CircularProgressIndicator indicator, RecyclerView recyclerView) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("cars").document().collection(brandName).get()
+        db.collection("cars").document("RuBANTgnmgI3kXWl1Elu").collection(brandName).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
         if (user == null) {
             //Need to authenticate, not signed im
-            Intent intent = new Intent(this, SignInActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(this, SignInActivity.class);
+            //startActivity(intent);
         } else {
             indicator.setVisibility(View.VISIBLE);
 
