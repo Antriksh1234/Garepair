@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             app:icon="@drawable/ic_baseline_format_list_bulleted_24"
             android:text="Select"
+            android:onClick="showAlertDialog"
             app:cornerRadius="20dp"
             android:padding="10dp"
             android:layout_marginEnd="20dp"

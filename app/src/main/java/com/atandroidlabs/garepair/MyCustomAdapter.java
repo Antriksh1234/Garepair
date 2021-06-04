@@ -41,7 +41,7 @@ public class MyCustomAdapter  extends ArrayAdapter<Brand> {
         TextView brandName = convertView.findViewById(R.id.name_of_brand);
 
         brandName.setText(curr.name);
-        brandImg.setImageResource(R.drawable.car);
+        brandImg.setImageResource(curr.img_res);
 
         return convertView;
     }

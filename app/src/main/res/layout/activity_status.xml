@@ -25,10 +25,18 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textAllCaps="true"
-
         android:fontFamily="@font/work_sans_regular"
         android:layout_below="@id/working_heading_status"
         android:text="Estimated Time: 3 Hours"/>
+
+    <ImageView
+        android:id="@+id/working_img"
+        android:src="@drawable/working_vector"
+        android:layout_width="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/estimated_time"
+        android:layout_height="200dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/status_service_rcv"
@@ -36,8 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/estimated_time"/>
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/working_img"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:onClick="callOwner"

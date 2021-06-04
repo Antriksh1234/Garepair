@@ -3,12 +3,18 @@ package com.atandroidlabs.garepair;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,7 +24,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +41,97 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    public void showAlertDialog(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        ArrayList<Brand> brands = getBrandList();
+        View view = LayoutInflater.from(this).inflate(R.layout.select_car_layout, null, false);
+        Spinner spinner = view.findViewById(R.id.car_select_spinner);
+        CircularProgressIndicator indicator = view.findViewById(R.id.circle_indicator);
+        RecyclerView recyclerView = view.findViewById(R.id.cars_rcv);
+        indicator.setVisibility(View.INVISIBLE);
+        MyCustomAdapter adapter = new MyCustomAdapter(getApplicationContext(), brands);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Brand brand = (Brand) adapterView.getItemAtPosition(i);
+                indicator.setVisibility(View.VISIBLE);
+                showCarsOfBrand(brand.name, indicator, recyclerView);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showCarsOfBrand(String brandName, CircularProgressIndicator indicator, RecyclerView recyclerView) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("cars").document().collection(brandName).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<Car> cars = new ArrayList<>();
+                            for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                Toast.makeText(MainActivity.this, "doc found", Toast.LENGTH_SHORT).show();
+                                if (document.contains("Name")) {
+                                    cars.add(new Car((String) document.get("Name")));
+                                }
+                            }
+                            Toast.makeText(MainActivity.this, cars.size() + "", Toast.LENGTH_SHORT).show();
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            recyclerView.setAdapter(new CarAdapter(getApplicationContext(), cars));
+                        } else {
+                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+                        indicator.setVisibility(View.INVISIBLE);
+                    }
+                });
+    }
+
+    private ArrayList<Brand> getBrandList() {
+        ArrayList<Brand> brands = new ArrayList<>();
+        brands.add(new Brand("Ashok Leyland", R.drawable.ashok_leyland));
+        brands.add(new Brand("Audi", R.drawable.audi));
+        brands.add(new Brand("BMW", R.drawable.bmw));
+        brands.add(new Brand("Chevrolet", R.drawable.chervolet));
+        brands.add(new Brand("Daewoo", R.drawable.daewoo));
+        brands.add(new Brand("Datsun", R.drawable.datsun));
+        brands.add(new Brand("Fiat", R.drawable.fiat));
+        brands.add(new Brand("Force Motors", R.drawable.force_motors));
+        brands.add(new Brand("Ford", R.drawable.ford));
+        brands.add(new Brand("Honda", R.drawable.honda));
+        brands.add(new Brand("Hyundai", R.drawable.hyundai));
+        brands.add(new Brand("ICML", R.drawable.icml));
+        brands.add(new Brand("Isuzu", R.drawable.isuzu));
+        brands.add(new Brand("Jaguar", R.drawable.jaguar));
+        brands.add(new Brand("Jeep", R.drawable.jeep));
+        brands.add(new Brand("Kia", R.drawable.kia));
+        brands.add(new Brand("Lamborghini", R.drawable.lamboghini));
+        brands.add(new Brand("Lexus", R.drawable.lexus));
+        brands.add(new Brand("MG", R.drawable.mg));
+        brands.add(new Brand("Mahindra and Mahindra", R.drawable.mahindra));
+        brands.add(new Brand("Maruti Suzuki", R.drawable.maruti_suzuki));
+        brands.add(new Brand("Nisaan", R.drawable.nisaan));
+        brands.add(new Brand("Porsche", R.drawable.porsche));
+        brands.add(new Brand("Premier", R.drawable.premier));
+        brands.add(new Brand("Renault", R.drawable.renault));
+        brands.add(new Brand("Reva", R.drawable.reva));
+        brands.add(new Brand("Skoda", R.drawable.skoda));
+        brands.add(new Brand("Tata", R.drawable.tata));
+        brands.add(new Brand("Toyota", R.drawable.toyota));
+        brands.add(new Brand("Volkswagen", R.drawable.volkswagen));
+
+        return brands;
     }
 
     @Override
