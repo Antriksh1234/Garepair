@@ -75,19 +75,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void showCarsOfBrand(String brandName, CircularProgressIndicator indicator, RecyclerView recyclerView) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("cars").document().collection(brandName).get()
+        db.collection("cars").document("RuBANTgnmgI3kXWl1Elu").collection(brandName).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             ArrayList<Car> cars = new ArrayList<>();
                             for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Toast.makeText(MainActivity.this, "doc found", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MainActivity.this, "doc found", Toast.LENGTH_SHORT).show();
                                 if (document.contains("Name")) {
                                     cars.add(new Car((String) document.get("Name")));
                                 }
                             }
-                            Toast.makeText(MainActivity.this, cars.size() + "", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, cars.size() + "", Toast.LENGTH_SHORT).show();
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             recyclerView.setAdapter(new CarAdapter(getApplicationContext(), cars));
                         } else {
