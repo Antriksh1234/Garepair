@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "885581545234",
+    "firebase_url": "https://garepair-2e212-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "garepair-2e212",
     "storage_bucket": "garepair-2e212.appspot.com"
   },
@@ -13,6 +14,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "885581545234-2gt7ba5rhhph14g2877gn3k39cqrcj74.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atandroidlabs.garepair",
+            "certificate_hash": "22ca7a0fd3ee7ac30afe635d4f9d16110d3e4da2"
+          }
+        },
+        {
+          "client_id": "885581545234-d5uafc0lan6uppvdiu6tkqu31s36ge32.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atandroidlabs.garepair",
+            "certificate_hash": "adef6d75930ad2f413792106c4fb1075ce3c86ff"
+          }
+        },
         {
           "client_id": "885581545234-g85eu66rt9rgcs1qtp2rbr9saj7p4hvm.apps.googleusercontent.com",
           "client_type": 3
@@ -36,4 +53,4 @@
     }
   ],
   "configuration_version": "1"
-}
+}}

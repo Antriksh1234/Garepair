@@ -10,6 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 
 import com.atandroidlabs.garepair.TabbedFragment.AcServiceAndRepairFragment;
@@ -22,11 +24,16 @@ import com.atandroidlabs.garepair.TabbedFragment.TyresAndWheelsFragment;
 import com.atandroidlabs.garepair.TabbedFragment.WinshieldAndGlassFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TabbedActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private final int NumberOfServices = 8;
+    public static List<ServicePojo> selectedList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,7 @@ public class TabbedActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.choose_service_viewpager);
         tabLayout = findViewById(R.id.choose_service_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        selectedList=new ArrayList<>();
         MyServicePagerAdapter adapter = new MyServicePagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
     }

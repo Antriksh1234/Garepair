@@ -37,10 +37,15 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Lorem Ipsum ipsum"/>
-
         <TextView
             android:textColor="@color/teal_700"
-            android:id="@+id/service_description_cart"
+            android:id="@+id/service_duration_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum"/>
+        <TextView
+            android:textColor="@color/teal_700"
+            android:id="@+id/service_warrenty_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lorem ipsum"/>

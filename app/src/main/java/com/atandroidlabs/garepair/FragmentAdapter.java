@@ -1,6 +1,7 @@
 package com.atandroidlabs.garepair;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,8 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
             public void onClick(View view) {
                 String name=list.get(position).getServiceName();
                 Toast.makeText(view.getContext(),name,Toast.LENGTH_SHORT).show();
+                holder.mView.setBackgroundColor(Color.parseColor("#FFFACD"));
+                TabbedActivity.selectedList.add(obj);
             }
         });
     }

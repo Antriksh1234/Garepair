@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
         if (user == null) {
             //Need to authenticate, not signed im
-            //Intent intent = new Intent(this, SignInActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
         } else {
             indicator.setVisibility(View.VISIBLE);
 
