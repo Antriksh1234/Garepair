@@ -25,7 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:text="Enhancing Driving experiences for over 10 years"
+                    android:text="Enhancing Driving experiences for over"
                     android:textColor="@color/white"
                     android:textAlignment="center"
                     android:layout_marginStart="20dp"
@@ -34,11 +34,31 @@
                     android:fontFamily="@font/work_sans_extra_bold_regular"
                     android:textSize="28sp"/>
 
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/years"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/faq_head"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/years"/>
+
+                <TextView
+                    android:textSize="28sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/work_sans_extra_bold_regular"
+                    android:id="@+id/years_text"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Years"
+                    android:layout_below="@id/years"/>
+
                 <TextView
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/faq_head"
+                    android:layout_below="@id/years_text"
                     android:layout_centerHorizontal="true"
                     android:text="Because We believe in your satisfaction"
                     android:textColor="@color/white"

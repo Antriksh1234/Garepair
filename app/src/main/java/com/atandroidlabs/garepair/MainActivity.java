@@ -82,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             ArrayList<Car> cars = new ArrayList<>();
                             for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Toast.makeText(MainActivity.this, "doc found", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MainActivity.this, "doc found", Toast.LENGTH_SHORT).show();
                                 if (document.contains("Name")) {
                                     cars.add(new Car((String) document.get("Name")));
                                 }
                             }
-                            Toast.makeText(MainActivity.this, cars.size() + "", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, cars.size() + "", Toast.LENGTH_SHORT).show();
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             recyclerView.setAdapter(new CarAdapter(getApplicationContext(), cars));
                         } else {
