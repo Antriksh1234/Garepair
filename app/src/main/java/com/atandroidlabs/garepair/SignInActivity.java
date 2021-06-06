@@ -96,6 +96,7 @@ public class SignInActivity extends AppCompatActivity {
         map.put("name", user.getDisplayName());
         map.put("email", user.getEmail());
         map.put("orderId", null);
+        map.put("carId", null);
         db.collection("User").document(user.getUid()).set(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

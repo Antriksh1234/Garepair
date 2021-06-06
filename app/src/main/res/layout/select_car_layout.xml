@@ -23,14 +23,14 @@
         android:id="@+id/car_select_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cars_rcv"
         tools:listitem="@layout/car_item_layout"
         android:layout_margin="20dp"
         android:layout_below="@id/car_select_spinner"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="230dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/select_button"
