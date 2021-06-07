@@ -42,6 +42,7 @@ public class BatteryServiceFragment extends Fragment {
     RecyclerView recyclerView;
     List<ServicePojo> list;
     RecyclerView.Adapter adapter;
+    private String type;
 
     public BatteryServiceFragment() {
         // Required empty public constructor
@@ -72,6 +73,7 @@ public class BatteryServiceFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        type="XUV";
     }
 
     @Override
@@ -95,9 +97,21 @@ public class BatteryServiceFragment extends Fragment {
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
-                        list.add(obj);
+                        firebaseFirestore.collection("services").document("LzhImDCVx6jyDivEx2z6")
+                                .collection("Battery Service").document(document.getId()).collection("GetPrice").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task1) {
+                                for(QueryDocumentSnapshot doc : task1.getResult()){
+                                    if (doc.get("Type").equals(type)){
+                                        obj.setPrice(Integer.parseInt(doc.get("Price").toString()));
+                                        list.add(obj);
+                                        adapter.notifyDataSetChanged();
+                                        break;
+                                    }
+                                }
+                            }
+                        });
                     }
-                    adapter.notifyDataSetChanged();
                 }
                 else{
                     Log.i("Error","Task Failure");

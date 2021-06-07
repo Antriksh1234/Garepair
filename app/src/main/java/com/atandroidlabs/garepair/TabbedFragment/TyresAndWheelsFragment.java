@@ -43,6 +43,7 @@ public class TyresAndWheelsFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     List<ServicePojo> list;
+    private String type;
 
     public TyresAndWheelsFragment() {
         // Required empty public constructor
@@ -73,6 +74,7 @@ public class TyresAndWheelsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        type="XUV";
     }
 
     @Override
@@ -95,9 +97,21 @@ public class TyresAndWheelsFragment extends Fragment {
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
-                        list.add(obj);
+                        FirebaseFirestore.getInstance().collection("services").document("LzhImDCVx6jyDivEx2z6")
+                                .collection("Tyres and Wheels").document(document.getId()).collection("GetPrice").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task1) {
+                                for(QueryDocumentSnapshot doc : task1.getResult()){
+                                    if (doc.get("Type").equals(type)){
+                                        obj.setPrice(Integer.parseInt(doc.get("Price").toString()));
+                                        list.add(obj);
+                                        adapter.notifyDataSetChanged();
+                                        break;
+                                    }
+                                }
+                            }
+                        });
                     }
-                    adapter.notifyDataSetChanged();
                 }
                 else Log.i("Error","Task Failure");
             }

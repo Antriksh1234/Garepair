@@ -42,6 +42,7 @@ public class AcServiceAndRepairFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String type;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     List<ServicePojo> acService;
@@ -76,6 +77,7 @@ public class AcServiceAndRepairFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        type="XUV";
     }
 
     @Override
@@ -98,9 +100,21 @@ public class AcServiceAndRepairFragment extends Fragment {
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
-                        acService.add(obj);
+                        firestore.collection("services").document("LzhImDCVx6jyDivEx2z6")
+                                .collection("AC Service and Repair").document(document.getId()).collection("GetPrice").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task1) {
+                                for(QueryDocumentSnapshot doc : task1.getResult()){
+                                    if (doc.get("Type").equals(type)){
+                                        obj.setPrice(Integer.parseInt(doc.get("Price").toString()));
+                                        acService.add(obj);
+                                        adapter.notifyDataSetChanged();
+                                        break;
+                                    }
+                                }
+                            }
+                        });
                     }
-                    adapter.notifyDataSetChanged();
                 }
                 else Log.i("Error","Task failure");
             }

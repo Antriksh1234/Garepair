@@ -31,7 +31,7 @@ public class WorkingOnItFragment extends Fragment {
         if (user == null  || user.getDisplayName() == null) {
             helloUser.setText("Hello User");
         } else {
-            String name = "Hello, " + user.getDisplayName().substring(0, user.getDisplayName().indexOf(" "));
+            String name = "Welcome " + user.getDisplayName().substring(0, user.getDisplayName().indexOf(" "));
             helloUser.setText(name);
         }
     }
