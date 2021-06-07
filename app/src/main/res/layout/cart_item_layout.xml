@@ -16,6 +16,7 @@
         app:cardCornerRadius="20dp">
 
         <ImageView
+            android:id="@+id/cart_item_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/car"/>
@@ -53,7 +54,7 @@
 
     <TextView
         android:textColor="@color/teal_700"
-        android:id="@+id/price_of_service_cart"
+        android:id="@+id/cart_item_price"
         android:text="₹120"
         android:textSize="18sp"
         android:fontFamily="@font/work_sans_extra_bold_regular"

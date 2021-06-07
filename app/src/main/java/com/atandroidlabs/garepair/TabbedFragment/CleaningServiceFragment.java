@@ -96,6 +96,7 @@ public class CleaningServiceFragment extends Fragment {
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
+                        obj.setResource(R.drawable.cleaning);
                         FirebaseFirestore.getInstance().collection("services").document("LzhImDCVx6jyDivEx2z6")
                                 .collection("Cleaning Service").document(document.getId()).collection("GetPrice").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override

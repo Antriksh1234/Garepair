@@ -1,10 +1,20 @@
 package com.atandroidlabs.garepair;
 
+
 public class ServicePojo {
     private String serviceName;
     private String warrenty;
     private String duration;
     private int price;
+    private int resource;
+
+    public int getResource() {
+        return resource;
+    }
+
+    public void setResource(int resource) {
+        this.resource = resource;
+    }
 
     public int getPrice() {
         return price;

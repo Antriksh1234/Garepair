@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
         holder.Duration.setText("Estimated Time : "+obj.getDuration());
         holder.Warrenty.setText("Warrenty : "+obj.getWarrenty());
         holder.price.setText("₹"+String.valueOf(obj.getPrice()));
+        holder.image.setImageDrawable(mContext.getResources().getDrawable(obj.getResource()));
         Log.i("Price in Fragment", obj.getServiceName()+" "+String.valueOf(obj.getPrice()));
         if(TabbedActivity.selectedList.contains(obj)){
             holder.mView.setBackgroundColor(Color.parseColor("#FFFACD"));
@@ -68,10 +70,12 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView Name, Warrenty, Duration,price;
         public View mView;
+        public ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Name = (TextView) itemView.findViewById(R.id.ServiceName);
+            image=(ImageView) itemView.findViewById(R.id.service_select_imageView);
             Warrenty = (TextView) itemView.findViewById(R.id.ServiceWarrenty);
             Duration = (TextView) itemView.findViewById(R.id.ServiceDuration);
             price=(TextView)itemView.findViewById(R.id.service_item_price);
