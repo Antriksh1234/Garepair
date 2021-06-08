@@ -21,6 +21,7 @@ import java.util.List;
 public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHolder> {
     List<ServicePojo> list;
     private Context mContext;
+    private int CheckedPostion=0;
 
     public FragmentAdapter(List<ServicePojo> list, Context mContext) {
         this.list = list;
@@ -43,23 +44,7 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
         holder.Warrenty.setText("Warrenty : "+obj.getWarrenty());
         holder.price.setText("₹"+String.valueOf(obj.getPrice()));
         holder.image.setImageDrawable(mContext.getResources().getDrawable(obj.getResource()));
-        Log.i("Price in Fragment", obj.getServiceName()+" "+String.valueOf(obj.getPrice()));
-        if(TabbedActivity.selectedList.contains(obj)){
-            holder.mView.setBackgroundColor(Color.parseColor("#FFFACD"));
-        }
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name=list.get(position).getServiceName();
-                for(int i=0;i<getItemCount();i++){
-                    if(TabbedActivity.selectedList.contains(list.get(i))){
-                        TabbedActivity.selectedList.remove(list.get(i));
-                    }
-                }
-                TabbedActivity.selectedList.add(obj);
-                holder.mView.setBackgroundColor(Color.parseColor("#FFFACD"));
-            }
-        });
+        holder.bind(list.get(position));
     }
 
     @Override
@@ -80,6 +65,41 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
             Duration = (TextView) itemView.findViewById(R.id.ServiceDuration);
             price=(TextView)itemView.findViewById(R.id.service_item_price);
             mView=itemView;
+        }
+        void bind(final ServicePojo obj){
+            if(TabbedActivity.selectedList.contains(obj)){
+                itemView.setBackgroundColor(Color.parseColor("#FFFACD"));
+            }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemView.setBackgroundColor(Color.parseColor("#FFFACD"));
+                    for(int i=0;i<getItemCount();i++){
+                        if(TabbedActivity.selectedList.contains(list.get(i))){
+                            TabbedActivity.selectedList.remove(list.get(i));
+                        }
+                    }
+                    TabbedActivity.selectedList.add(obj);
+                    if(CheckedPostion!=getAdapterPosition()){
+                        notifyItemChanged(CheckedPostion);
+                        CheckedPostion=getAdapterPosition();
+                    }
+                    Check();
+                }
+            });
+        }
+        public void Check(){
+            if(CheckedPostion==-1){
+                itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            }
+            else{
+                if(CheckedPostion==getAdapterPosition()){
+                    itemView.setBackgroundColor(Color.parseColor("#FFFACD"));
+                }
+                else{
+                    itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                }
+            }
         }
     }
 }
