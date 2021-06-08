@@ -74,17 +74,23 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
                 @Override
                 public void onClick(View view) {
                     itemView.setBackgroundColor(Color.parseColor("#FFFACD"));
-                    for(int i=0;i<getItemCount();i++){
-                        if(TabbedActivity.selectedList.contains(list.get(i))){
-                            TabbedActivity.selectedList.remove(list.get(i));
+                    if(TabbedActivity.selectedList.contains(obj)){
+                        TabbedActivity.selectedList.remove(obj);
+                        itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    }
+                    else {
+                        for (int i = 0; i < getItemCount(); i++) {
+                            if (TabbedActivity.selectedList.contains(list.get(i))) {
+                                TabbedActivity.selectedList.remove(list.get(i));
+                            }
                         }
+                        TabbedActivity.selectedList.add(obj);
+                        if (CheckedPostion != getAdapterPosition()) {
+                            notifyItemChanged(CheckedPostion);
+                            CheckedPostion = getAdapterPosition();
+                        }
+                        Check();
                     }
-                    TabbedActivity.selectedList.add(obj);
-                    if(CheckedPostion!=getAdapterPosition()){
-                        notifyItemChanged(CheckedPostion);
-                        CheckedPostion=getAdapterPosition();
-                    }
-                    Check();
                 }
             });
         }
