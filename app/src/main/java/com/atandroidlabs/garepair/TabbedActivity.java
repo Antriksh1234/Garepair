@@ -35,6 +35,7 @@ public class TabbedActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private final int NumberOfServices = 8;
     public static List<ServicePojo> selectedList;
+    public static String carType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class TabbedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tabbed);
 
         getSupportActionBar().hide();
-
+        carType=getIntent().getStringExtra("Type");
         viewPager = findViewById(R.id.choose_service_viewpager);
         tabLayout = findViewById(R.id.choose_service_tab_layout);
         tabLayout.setupWithViewPager(viewPager);

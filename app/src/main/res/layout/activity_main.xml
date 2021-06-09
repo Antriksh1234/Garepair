@@ -32,10 +32,12 @@
             android:layout_margin="20dp">
 
             <ImageView
+                android:padding="10dp"
                 android:id="@+id/car_imageView"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/car" />
 
         </androidx.cardview.widget.CardView>
 
@@ -47,16 +49,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:textSize="20sp"
+                android:id="@+id/brand_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/work_sans_extra_bold_regular"
-                android:text="My Vehicle"/>
+                android:text="Brand Name"
+                android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/car_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lorem Ipsum Ipsum"/>
+                android:text="Car Name" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton

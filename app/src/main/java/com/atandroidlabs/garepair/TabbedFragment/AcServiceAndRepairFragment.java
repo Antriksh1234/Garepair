@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.atandroidlabs.garepair.FragmentAdapter;
 import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.R;
+import com.atandroidlabs.garepair.TabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -77,7 +78,7 @@ public class AcServiceAndRepairFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        type="XUV";
+        type= TabbedActivity.carType;
     }
 
     @Override

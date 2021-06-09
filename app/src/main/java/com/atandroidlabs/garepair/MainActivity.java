@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -35,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     Fragment mainFragment;
+    ArrayList<Brand> brands;
+    private Spinner spinner;
+    private AlertDialog dialog;
+    public static String brandName="",carName="",type="";
 
     FirebaseUser user;
 
@@ -46,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
     public void showAlertDialog(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        ArrayList<Brand> brands = getBrandList();
+        brands = getBrandList();
         View view = LayoutInflater.from(this).inflate(R.layout.select_car_layout, null, false);
-        Spinner spinner = view.findViewById(R.id.car_select_spinner);
+        spinner = view.findViewById(R.id.car_select_spinner);
         CircularProgressIndicator indicator = view.findViewById(R.id.circle_indicator);
         RecyclerView recyclerView = view.findViewById(R.id.cars_rcv);
         indicator.setVisibility(View.INVISIBLE);
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Brand brand = (Brand) adapterView.getItemAtPosition(i);
                 indicator.setVisibility(View.VISIBLE);
+                brandName=brand.name;
                 showCarsOfBrand(brand.name, indicator, recyclerView);
             }
 
@@ -67,9 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         builder.setView(view);
-        AlertDialog dialog = builder.create();
+        dialog = builder.create();
         dialog.show();
     }
 
@@ -220,8 +227,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void placeOrder(View view) {
-        Intent intent = new Intent(this, TabbedActivity.class);
-        startActivity(intent);
+        if(type.equals("")){
+            Toast.makeText(getApplicationContext(),"Select a Car!",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(this, TabbedActivity.class);
+            intent.putExtra("Type", type);
+            startActivity(intent);
+        }
     }
 
     public void viewStatus(View view) {
@@ -236,5 +249,33 @@ public class MainActivity extends AppCompatActivity {
     public void openFAQ(View view) {
         Intent intent = new Intent(this, FaqActivity.class);
         startActivity(intent);
+    }
+    public void selectCar(View view){
+        if(brandName.equals("") || carName.equals("")){
+            Toast.makeText(getApplicationContext(),"Select a Car!",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            FirebaseFirestore.getInstance().collection("cars").document("RuBANTgnmgI3kXWl1Elu").collection(brandName).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()){
+                        for(QueryDocumentSnapshot document : task.getResult()){
+                            if(document.get("Name").equals(carName)){
+                                type= String.valueOf(document.get("Type"));
+                                break;
+                            }
+                        }
+                    }
+                    else{
+                        Log.i("Error","Task is Failed!");
+                    }
+                }
+            });
+            dialog.hide();
+            TextView brand=(TextView)findViewById(R.id.brand_name);
+            TextView car=(TextView)findViewById(R.id.car_name);
+            brand.setText(brandName);
+            car.setText(carName);
+        }
     }
 }
