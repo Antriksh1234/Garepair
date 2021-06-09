@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.List;
@@ -46,13 +47,15 @@ public class CartActivity extends AppCompatActivity {
         int TotalTime=0;
         for(int i=0;i<TabbedActivity.selectedList.size();i++){
             String[] arr=TabbedActivity.selectedList.get(i).getDuration().split(" ");
+            if(arr[0].equals("Instant")) continue;
             if(arr[1].equals("Hours")) TotalTime+=Integer.parseInt(arr[0]);
             else TotalTime+=Integer.parseInt(arr[0])*24;
         }
         int hours=TotalTime%24;
         int days=(int)TotalTime/24;
         if(hours==0 || days==0){
-            if(hours==0) Time.setText(days+" Days");
+            if(hours==0 && days==0) Time.setText("Instant");
+            else if(hours==0) Time.setText(days+" Days");
             else Time.setText(hours+" Hours");
         }
         else Time.setText(days+" Days and "+hours+" Hours");
