@@ -97,6 +97,7 @@ public class SignInActivity extends AppCompatActivity {
         map.put("email", user.getEmail());
         map.put("orderId", null);
         map.put("carId", null);
+        map.put("brand", null);
         db.collection("User").document(user.getUid()).set(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -123,7 +124,6 @@ public class SignInActivity extends AppCompatActivity {
                 .build();
 
         client = GoogleSignIn.getClient(this, gso);
-
         button = findViewById(R.id.signInButton);
 
         //Sign in button

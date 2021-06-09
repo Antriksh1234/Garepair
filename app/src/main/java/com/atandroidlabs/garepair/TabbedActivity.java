@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.atandroidlabs.garepair.TabbedFragment.AcServiceAndRepairFragment;
 import com.atandroidlabs.garepair.TabbedFragment.BatteryServiceFragment;
@@ -51,6 +52,10 @@ public class TabbedActivity extends AppCompatActivity {
     }
 
     public void goToCart(View view) {
+        if (selectedList.size() == 0) {
+            Toast.makeText(this, "Please Add Some Items First to Your Cart", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }

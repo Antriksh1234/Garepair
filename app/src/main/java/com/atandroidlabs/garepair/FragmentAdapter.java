@@ -21,7 +21,7 @@ import java.util.List;
 public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHolder> {
     List<ServicePojo> list;
     private Context mContext;
-    private int CheckedPostion=0;
+    private int CheckedPostiion=0;
 
     public FragmentAdapter(List<ServicePojo> list, Context mContext) {
         this.list = list;
@@ -85,9 +85,9 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
                             }
                         }
                         TabbedActivity.selectedList.add(obj);
-                        if (CheckedPostion != getAdapterPosition()) {
-                            notifyItemChanged(CheckedPostion);
-                            CheckedPostion = getAdapterPosition();
+                        if (CheckedPostiion != getAdapterPosition()) {
+                            notifyItemChanged(CheckedPostiion);
+                            CheckedPostiion = getAdapterPosition();
                         }
                         Check();
                     }
@@ -95,11 +95,11 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
             });
         }
         public void Check(){
-            if(CheckedPostion==-1){
+            if(CheckedPostiion==-1){
                 itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
             }
             else{
-                if(CheckedPostion==getAdapterPosition()){
+                if(CheckedPostiion==getAdapterPosition()){
                     itemView.setBackgroundColor(Color.parseColor("#FFFACD"));
                 }
                 else{
