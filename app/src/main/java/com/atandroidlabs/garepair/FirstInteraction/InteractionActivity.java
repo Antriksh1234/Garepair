@@ -1,6 +1,8 @@
 package com.atandroidlabs.garepair.FirstInteraction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -32,6 +34,8 @@ public class InteractionActivity extends FragmentActivity {
     public void passToRegister(View view) {
         //At the moment
         Intent intent = new Intent(this, MainActivity.class);
+        SharedPreferences sp = getSharedPreferences("com.atandroidlabs.garepair", Context.MODE_PRIVATE);
+        sp.edit().putBoolean("firstTime", false).apply();
         startActivity(intent);
         finish();
     }
