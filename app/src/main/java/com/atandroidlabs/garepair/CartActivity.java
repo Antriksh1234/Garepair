@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
@@ -18,6 +22,7 @@ public class CartActivity extends AppCompatActivity {
     int TotalPrice=0;
     private TextView priceTotal;
     private TextView CarName,Time;
+    private MaterialButton placeOrderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +32,27 @@ public class CartActivity extends AppCompatActivity {
         setPrice();
         setField();
         recyclerView=findViewById(R.id.cart_recyclerview);
+        placeOrderButton = findViewById(R.id.place_order_button);
+
+        placeOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                placeOrderInDB();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
         adapter=new CartAdapter(getApplicationContext(),list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
+    private void placeOrderInDB() {
+        Toast.makeText(this, "Order Placed", Toast.LENGTH_SHORT).show();
+    }
+
     public void setPrice(){
         priceTotal=findViewById(R.id.order_total_textView);
         list=TabbedActivity.selectedList;
