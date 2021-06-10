@@ -19,6 +19,7 @@ import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.TabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,7 +46,7 @@ public class WinshieldAndGlassFragment extends Fragment {
     RecyclerView.Adapter adapter;
     List<Service> list;
     private String type;
-
+    private CircularProgressIndicator indicator;
     public WinshieldAndGlassFragment() {
         // Required empty public constructor
     }
@@ -84,6 +85,7 @@ public class WinshieldAndGlassFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_winshield_and_glass, container, false);
         list=new ArrayList<>();
+        indicator = view.findViewById(R.id.windshieldIndicator);
         adapter=new FragmentAdapter(list,getContext());
         recyclerView=view.findViewById(R.id.windshield_recyclerview);
         recyclerView.setAdapter(adapter);
@@ -112,6 +114,8 @@ public class WinshieldAndGlassFragment extends Fragment {
                                         break;
                                     }
                                 }
+
+                                indicator.setVisibility(View.GONE);
                             }
                         });
                     }

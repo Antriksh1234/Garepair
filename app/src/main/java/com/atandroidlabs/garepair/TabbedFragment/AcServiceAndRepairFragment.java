@@ -22,6 +22,7 @@ import com.atandroidlabs.garepair.R;
 import com.atandroidlabs.garepair.TabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,7 +49,7 @@ public class AcServiceAndRepairFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     List<Service> acService;
-
+    private CircularProgressIndicator indicator;
 
     public AcServiceAndRepairFragment() {
         // Required empty public constructor
@@ -88,6 +89,7 @@ public class AcServiceAndRepairFragment extends Fragment {
         // Inflate the layout for this fragment
         acService=new ArrayList<>();
         View view=(View) inflater.inflate(R.layout.fragment_ac_service_and_repair,container,false);
+        indicator = view.findViewById(R.id.acIndicator);
         recyclerView=view.findViewById(R.id.ac_recyclerview);
         adapter=new FragmentAdapter(acService,getContext());
         recyclerView.setAdapter(adapter);
@@ -116,6 +118,8 @@ public class AcServiceAndRepairFragment extends Fragment {
                                         break;
                                     }
                                 }
+
+                                indicator.setVisibility(View.GONE);
                             }
                         });
                     }

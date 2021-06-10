@@ -20,6 +20,7 @@ import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.TabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -46,7 +47,7 @@ public class TyresAndWheelsFragment extends Fragment {
     RecyclerView.Adapter adapter;
     List<Service> list;
     private String type;
-
+    private CircularProgressIndicator indicator;
     public TyresAndWheelsFragment() {
         // Required empty public constructor
     }
@@ -85,6 +86,7 @@ public class TyresAndWheelsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_tyres_and_wheels, container, false);
         list=new ArrayList<>();
+        indicator = view.findViewById(R.id.tyreIndicator);
         adapter=new FragmentAdapter(list,getContext());
         recyclerView=view.findViewById(R.id.tyres_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -113,6 +115,8 @@ public class TyresAndWheelsFragment extends Fragment {
                                         break;
                                     }
                                 }
+
+                                indicator.setVisibility(View.GONE);
                             }
                         });
                     }

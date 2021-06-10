@@ -19,6 +19,7 @@ import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.TabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,6 +46,7 @@ public class BatteryServiceFragment extends Fragment {
     List<Service> list;
     RecyclerView.Adapter adapter;
     private String type;
+    private CircularProgressIndicator indicator;
 
     public BatteryServiceFragment() {
         // Required empty public constructor
@@ -83,6 +85,7 @@ public class BatteryServiceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=(View)inflater.inflate(R.layout.fragment_battery_service,container,false);
+        indicator = view.findViewById(R.id.batteryIndicator);
         list=new ArrayList<>();
         recyclerView=(RecyclerView)view.findViewById(R.id.battery_recyclerview);
         adapter=new FragmentAdapter(list,getContext());
@@ -113,6 +116,7 @@ public class BatteryServiceFragment extends Fragment {
                                         break;
                                     }
                                 }
+                                indicator.setVisibility(View.GONE);
                             }
                         });
                     }
