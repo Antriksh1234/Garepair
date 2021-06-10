@@ -155,6 +155,13 @@ public class MainActivity extends AppCompatActivity {
             //Need to authenticate, not signed im
             Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
+            //Now check whether user is signed in now or not
+            user = auth.getCurrentUser();
+            if (user == null) {
+                Toast.makeText(this, "You are not signed it yet please try again", Toast.LENGTH_SHORT).show();
+            } else {
+                setupFragment();
+            }
         } else {
             indicator.setVisibility(View.VISIBLE);
 
@@ -201,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
             if (task.isSuccessful()) {
-                String status = (String) task.getResult().get("status");
+                String status = (String) task.getResult().get("finished");
                 assert status != null;
                 if (status.contentEquals("done")) {
                     indicator.setVisibility(View.INVISIBLE);

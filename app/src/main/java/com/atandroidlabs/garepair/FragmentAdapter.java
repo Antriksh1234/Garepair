@@ -31,7 +31,7 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
     @NonNull
     @Override
     public FragmentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(mContext).inflate(R.layout.choose_service_item_layout,parent,false);
+        View view= LayoutInflater.from(mContext).inflate(R.layout.cart_item_test,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }
