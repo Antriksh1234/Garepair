@@ -50,6 +50,7 @@ public class TabbedActivity extends AppCompatActivity {
         selectedList=new ArrayList<>();
         MyServicePagerAdapter adapter = new MyServicePagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(8);
     }
 
     public void goToCart(View view) {

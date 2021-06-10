@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.atandroidlabs.garepair.FragmentAdapter;
 import com.atandroidlabs.garepair.R;
+import com.atandroidlabs.garepair.Service;
 import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.TabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,7 +43,7 @@ public class WinshieldAndGlassFragment extends Fragment {
     private String mParam2;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    List<ServicePojo> list;
+    List<Service> list;
     private String type;
 
     public WinshieldAndGlassFragment() {
@@ -93,11 +94,12 @@ public class WinshieldAndGlassFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
                     for(QueryDocumentSnapshot document : task.getResult()){
-                        ServicePojo obj=new ServicePojo();
+                        Service obj=new Service();
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
                         obj.setResource(R.drawable.glass);
+                        obj.setSelected(false);
                         FirebaseFirestore.getInstance().collection("services").document("LzhImDCVx6jyDivEx2z6")
                                 .collection("Windshield and Glass").document(document.getId()).collection("GetPrice").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override

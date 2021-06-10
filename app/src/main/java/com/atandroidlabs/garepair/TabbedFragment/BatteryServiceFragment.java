@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.atandroidlabs.garepair.FragmentAdapter;
 import com.atandroidlabs.garepair.R;
+import com.atandroidlabs.garepair.Service;
 import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.TabbedActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,7 +42,7 @@ public class BatteryServiceFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     RecyclerView recyclerView;
-    List<ServicePojo> list;
+    List<Service> list;
     RecyclerView.Adapter adapter;
     private String type;
 
@@ -94,11 +95,12 @@ public class BatteryServiceFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot document : task.getResult()){
-                        ServicePojo obj=new ServicePojo();
+                        Service obj=new Service();
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
                         obj.setResource(R.drawable.battery);
+                        obj.setSelected(false);
                         firebaseFirestore.collection("services").document("LzhImDCVx6jyDivEx2z6")
                                 .collection("Battery Service").document(document.getId()).collection("GetPrice").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override

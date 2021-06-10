@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/select_heading"
+        android:textSize="28sp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/work_sans_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Choose your car"/>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/my_car_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/select_heading">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:background="#EFE8E8"
+                android:src="@drawable/car"
+                android:layout_marginStart="10dp"
+                android:id="@+id/car_imageView_final_select"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+            <TextView
+                android:layout_marginStart="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/car_imageView_final_select"
+                android:textSize="20sp"
+                android:id="@+id/car_name_final_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Car Name Here"/>
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:text="No, I want to change"
+        android:layout_height="wrap_content"
+        app:iconGravity="textStart"
+        app:icon="@drawable/ic_baseline_mode_edit_24"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_below="@id/my_car_relative"/>
+</RelativeLayout>

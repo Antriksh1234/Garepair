@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.atandroidlabs.garepair.FragmentAdapter;
+import com.atandroidlabs.garepair.Service;
 import com.atandroidlabs.garepair.ServicePojo;
 import com.atandroidlabs.garepair.R;
 import com.atandroidlabs.garepair.TabbedActivity;
@@ -46,7 +47,7 @@ public class AcServiceAndRepairFragment extends Fragment {
     private String type;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    List<ServicePojo> acService;
+    List<Service> acService;
 
 
     public AcServiceAndRepairFragment() {
@@ -97,11 +98,12 @@ public class AcServiceAndRepairFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot document : task.getResult()){
-                        ServicePojo obj=new ServicePojo();
+                        Service obj = new Service();
                         obj.setServiceName(document.get("Name").toString());
                         obj.setWarrenty(document.get("Warrenty").toString());
                         obj.setDuration(document.get("Duration").toString());
                         obj.setResource(R.drawable.ac);
+                        obj.setSelected(false);
                         firestore.collection("services").document("LzhImDCVx6jyDivEx2z6")
                                 .collection("AC Service and Repair").document(document.getId()).collection("GetPrice").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
